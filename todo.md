@@ -1,0 +1,5 @@
+- footer 
+- clean up nav
+- color scheme 
+- images & links 
+- basic bio information

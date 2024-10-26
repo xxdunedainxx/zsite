@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html>
+<head>
+<head>
+  <link rel="shortcut icon" href="favicon.ico" />
+  <link rel="stylesheet" href="css/nav.css">
+  <link rel="stylesheet" href="css/console.css">
+  <style>
+    body {
+        background-color: #D3D3D3; /* Off-white */
+        color: #4B0082; /* Dark purple */
+        font-family: Arial, sans-serif; /* Font choice */
+    }
+    h1 {
+      background-clip: text;
+    background-color: #4B0082; /* #d8acf8; */
+    color: transparent;
+    font-family: Segoe UI, Tahoma, Geneva, Verdana, sans-serif;
+    font-size: 70px;
+    margin: 0;
+    /* text-shadow: 0 4px 8px #4B0082, 
+    0 8px 16px #4B0082,
+     0 16px 32px #4B0082, 
+     0 32px 64px #4B0082; */
+    }
+
+    #smallDescription {
+      color: #c998ed;
+      padding-left: 50px;
+      font-size: 30px;
+    }
+  </style>
+  <title>Hey, Im Zach :)</title>
+  <script type="text/javascript" src="js/ui.js">
+  </script>
+  <script>
+  function sleep(ms) {
+      return new Promise(resolve => setTimeout(resolve, ms));
+  }
+
+
+  
+  async function infoWriter(){  
+    var SENTENCES = [
+      "Software Engineer",
+      "Musician",
+      "Loves Dogs",
+      "Fitness",
+      "Friends"
+    ]
+    var sentenceToPick = 0
+    var elementToUpdate = document.getElementById("smallDescription")
+
+    while (true) {
+
+      console.log("Clear existing inner text")
+      while(elementToUpdate.textContent != ""){
+        elementToUpdate.textContent = elementToUpdate.textContent.substr(
+          0, 
+          elementToUpdate.textContent.length - 1
+        )
+        await sleep(100)
+      }
+      
+      console.log("write new text")
+      var sentenceToUse = SENTENCES[sentenceToPick % SENTENCES.length]
+      sentenceToPick+=1
+      var i = 0
+      while(i < sentenceToUse.length){
+        console.log(`add: ${sentenceToUse[i]}`)
+        if(sentenceToUse[i] == ' '){
+          sentenceToUse[i] = '&#160;'
+          console.log("empty")
+        }
+        elementToUpdate.textContent += sentenceToUse[i]
+        i+=1
+        await sleep(100)
+      }
+      
+      elementToUpdate.textContent += "|"
+      var hasBar = true 
+      for(var j = 0; j < 6; j++){
+        await sleep(500);
+        if(hasBar){
+          elementToUpdate.textContent = elementToUpdate.textContent.substr(
+            0
+          , elementToUpdate.textContent.length - 1
+          )
+          hasBar = false 
+        } else {
+          hasBar = true 
+          elementToUpdate.textContent += "|"
+        }
+      }
+
+    }
+  }
+
+    window.onload = function() {
+      navBar("zach");  
+      infoWriter();
+    };
+  </script>
+ <script>
+
+  </script>
+</head>
+</head>
+<body>
+
+<!-- NAV -->
+<div id="nav"></div>
+<!-- END NAV  width="200" height="200"-->
+
+<h1>Oh shit what up >.> Congrats on finding this page!</h1>
+<img src="assets/zachAndYas.jpg" style="
+padding-left: 50px;height: 350px; 
+width:250px; 
+border-radius: 25px;" 
+alt="Anime Zach and Yas">
+<h4>DISCLAIMER --- THIS PROBABLY SUCKS ON MOBILE. IM SORRY. I WILL TRY TO FIX IN THE FUTURE.</h4>
+<h3 id="smallDescription"></h3>
+<p>This was just a stupid site i decided to put together in vanilla javascript & HTML. I mostly wanted to toy around with building a simple terminal inside of a website as a way of hosting a fun little 'puzzle' to navigate my personal website. Thanks if you made it this far, and feel free to reach out if you think this site could be enhanced! </p>
+</body>
+
+
+<div style="    align-items: center;
+display: flex;
+background-color: #333;
+flex-direction: column;
+color: white;
+justify-content: center;
+margin-top: 30px;
+min-height: 10;
+width: 100%">
+
+<div style="  display: flex;
+flex-wrap: wrap;">
+<div style="width: 50px; height: 50px">
+ <a href="https://github.com/xxdunedainxx">
+<svg style="color: white" class="MuiSvgIcon-root" focusable="false" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 .3a12 12 0 0 0-3.8 23.4c.6.1.8-.3.8-.6v-2c-3.3.7-4-1.6-4-1.6-.6-1.4-1.4-1.8-1.4-1.8-1-.7.1-.7.1-.7 1.2 0 1.9 1.2 1.9 1.2 1 1.8 2.8 1.3 3.5 1 0-.8.4-1.3.7-1.6-2.7-.3-5.5-1.3-5.5-6 0-1.2.5-2.3 1.3-3.1-.2-.4-.6-1.6 0-3.2 0 0 1-.3 3.4 1.2a11.5 11.5 0 0 1 6 0c2.3-1.5 3.3-1.2 3.3-1.2.6 1.6.2 2.8 0 3.2.9.8 1.3 1.9 1.3 3.2 0 4.6-2.8 5.6-5.5 5.9.5.4.9 1 .9 2.2v3.3c0 .3.1.7.8.6A12 12 0 0 0 12 .3"></path></svg>
+</div>
+</a>
+<div style="width: 50px; height: 50px">
+  <a href="https://www.linkedin.com/in/zach-mcfadden-09551aa2/">
+  <svg  style="color: white"  class="MuiSvgIcon-root" focusable="false" viewBox="0 0 24 24" aria-hidden="true"><path d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.32 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.79M6.88 8.56a1.68 1.68 0 0 0 1.68-1.68c0-.93-.75-1.69-1.68-1.69a1.69 1.69 0 0 0-1.69 1.69c0 .93.76 1.68 1.69 1.68m1.39 9.94v-8.37H5.5v8.37h2.77z"></path></svg>
+  </a>
+</div>
+</div>
+©2024 Created by: Zach McFadden
+</div>
+</html>
+
+
