@@ -1,0 +1,55 @@
+<style>
+#keyboard-container {
+  display: grid;
+  grid-template-columns: repeat(10, 1fr); /* Adjust as needed */
+  grid-gap: 5px;
+}
+
+.key {
+  background-color: #eee;
+  border: 1px solid #ccc;
+  padding: 10px;
+  text-align: center;
+  cursor: pointer;
+}
+</style>
+
+<script type="text/javascript">
+
+window.onload = function() {
+
+	const keyboardContainer = document.getElementById('keyboard-container');
+	const targetInput = document.getElementById('target-input');
+
+	const keys = [
+	  ['1', '2', '3', '4', '5', '6', '7', '8', '9', '0'],
+	  ['q', 'w', 'e', 'r', 't', 'y', 'u', 'i', 'o', 'p'],
+	  ['a', 's', 'd', 'f', 'g', 'h', 'j', 'k', 'l'],
+	  ['z', 'x', 'c', 'v', 'b', 'n', 'm', ',', '.'],
+	  [' ', 'Backspace'] // Add more keys as needed
+	];
+	console.log("Adding keys")
+	console.log(keyboardContainer)
+	keys.forEach(row => {
+	  row.forEach(key => {
+	    const keyButton = document.createElement('div');
+	    keyButton.classList.add('key');
+	    keyButton.textContent = key;
+	    console.log(keyButton)
+
+	    keyButton.addEventListener('click', () => {
+	      if (key === 'Backspace') {
+	        targetInput.value = targetInput.value.slice(0, -1);
+	      } else {
+	        targetInput.value += key;
+	      }
+	    });
+
+	    keyboardContainer.appendChild(keyButton);
+	  });
+	});
+}
+</script>
+
+<div id="keyboard-container"></div>
+<input type="text" id="target-input">
