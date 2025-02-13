@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="BranchesTreeState">
+    <expand>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="LOCAL_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="GROUP_NODE:origin" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+    </expand>
+    <select />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="6e8a79d1-e7de-4b69-a817-8462e3fc6aed" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/site/css/console.css" beforeDir="false" afterPath="$PROJECT_DIR$/site/css/console.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/site/js/keyboard.js" beforeDir="false" afterPath="$PROJECT_DIR$/site/js/keyboard.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/site/js/terminal.js" beforeDir="false" afterPath="$PROJECT_DIR$/site/js/terminal.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/site/js/ui.js" beforeDir="false" afterPath="$PROJECT_DIR$/site/js/ui.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/site/js/util.js" beforeDir="false" afterPath="$PROJECT_DIR$/site/js/util.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/site/keyboardDemo.html" beforeDir="false" afterPath="$PROJECT_DIR$/site/keyboardDemo.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/site/test/test.html" beforeDir="false" afterPath="$PROJECT_DIR$/test.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/site/welcome.html" beforeDir="false" afterPath="$PROJECT_DIR$/site/welcome.html" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FindInProjectRecents">
+    <findStrings>
+      <find>console</find>
+      <find>context</find>
+      <find>clearConsole</find>
+      <find>mycanvas</find>
+      <find>consoleListener</find>
+      <find>consoleWidth</find>
+      <find>800</find>
+      <find>width</find>
+      <find>targetInputDevice</find>
+      <find>targetInput</find>
+      <find>keys</find>
+      <find>terminalCanvas</find>
+      <find>updateTypeCache</find>
+      <find>handleBackSpace</find>
+      <find>registerKeyboardEventCallback</find>
+      <find>handleEnterKey</find>
+    </findStrings>
+    <dirStrings>
+      <dir>D:\git\zsite</dir>
+    </dirStrings>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="ProjectFrameBounds" extendedState="6">
+    <option name="x" value="-8" />
+    <option name="y" value="-8" />
+    <option name="width" value="1936" />
+    <option name="height" value="1096" />
+  </component>
+  <component name="ProjectId" id="2sxltfZbUJDc5hvWNlsrGAgO4fw" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="settings.editor.selected.configurable" value="configurable.group.build" />
+  </component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="D:\git\zsite" />
+    </key>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="6e8a79d1-e7de-4b69-a817-8462e3fc6aed" name="Default Changelist" comment="" />
+      <created>1739405322291</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1739405322291</updated>
+      <workItem from="1739405323351" duration="1752000" />
+      <workItem from="1739407110674" duration="64000" />
+      <workItem from="1739411195219" duration="143000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+    <option name="RECENT_FILTERS">
+      <map>
+        <entry key="Branch">
+          <value>
+            <list />
+          </value>
+        </entry>
+        <entry key="User">
+          <value>
+            <list />
+          </value>
+        </entry>
+      </map>
+    </option>
+    <option name="oldMeFiltersMigrated" value="true" />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="552" y="198" key="#Deployment" timestamp="1739405960126">
+      <screen x="0" y="0" width="1920" height="1080" />
+    </state>
+    <state x="552" y="198" key="#Deployment/0.0.1920.1080/-1920.-581.1920.1080/-1920.499.1920.1080@0.0.1920.1080" timestamp="1739405960126" />
+    <state x="740" y="295" key="FileChooserDialogImpl" timestamp="1739406186480">
+      <screen x="0" y="0" width="1920" height="1080" />
+    </state>
+    <state x="740" y="295" key="FileChooserDialogImpl/0.0.1920.1080/-1920.-581.1920.1080/-1920.499.1920.1080@0.0.1920.1080" timestamp="1739406186480" />
+    <state x="461" y="185" key="SettingsEditor" timestamp="1739406469750">
+      <screen x="0" y="0" width="1920" height="1080" />
+    </state>
+    <state x="461" y="185" key="SettingsEditor/0.0.1920.1080/-1920.-581.1920.1080/-1920.499.1920.1080@0.0.1920.1080" timestamp="1739406469750" />
+    <state x="623" y="235" width="672" height="678" key="search.everywhere.popup" timestamp="1739406429687">
+      <screen x="0" y="0" width="1920" height="1080" />
+    </state>
+    <state x="623" y="235" width="672" height="678" key="search.everywhere.popup/0.0.1920.1080/-1920.-581.1920.1080/-1920.499.1920.1080@0.0.1920.1080" timestamp="1739406429687" />
+  </component>
+</project>

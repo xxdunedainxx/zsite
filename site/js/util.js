@@ -1,7 +1,35 @@
+/**
+ * Simple delay function
+ * @param ms
+ * @returns {Promise<unknown>}
+ */
 function sleep(ms) {
     return new Promise(resolve => setTimeout(resolve, ms));
 }
 
+/**
+  * Util method for determining if this is a mobile device accessing the site.
+  *
+  */
+function isMobile(){
+    return window.innerWidth <= 800 || ('ontouchstart' in document.documentElement);
+}
+
+/**
+  * Simple helper method to make an element invisible
+  */
+function makeElementInvisible(elementId){
+    var elementToUpdate = document.getElementById(elementId)
+    elementToUpdate.style.visibility = 'hidden'
+    elementToUpdate.style.display    = 'none'
+}
+
+/**
+ * Writes sentences in a 'typing' fashion to a specific element
+ * @param sentences
+ * @param element
+ * @returns {Promise<void>}
+ */
 async function infoWriter(sentences, element){  
   var sentenceToPick = 0
   var elementToUpdate = document.getElementById(element)

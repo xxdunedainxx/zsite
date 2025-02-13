@@ -1,23 +1,51 @@
+// Loads of 'tech debt' in here. Might clean up later, idk
+
 var typingCache = ""
 var previousCommands = 1
 var messageStack = []
 var FILES = {
   "README" : `
-    Hey! Welcome to my personal website. You can use this terminal in order to navigate the website... Or well, at least figure out WHERE you can navigate. 
+    Hey! Welcome to my personal website. You can use this terminal in order to navigate the website... Or well, at least figure out WHERE you can navigate.
   `,
   "secret1" : 'L3phY2g=',
   "secret2" : ""
 }
 
+var consoleWidth = 800
+var consoleHeight = 400
+var canvasElementIdGlobal = null
+// from js/util
+if(isMobile()){
+    consoleWidth = window.innerWidth * .75
+    consoleHeight = consoleWidth / 2
+    registerKeyboardEventCallback(keyboardCallback)
+}
+
+function keyboardCallback(event, data){
+    console.log(event)
+    console.log(data)
+    console.log("Keyboard callback in terminal.js")
+    if(event == 'backspace'){
+        handleBackSpace()
+    } else if(event == 'Enter'){
+        handleEnterKey(canvasElementIdGlobal)
+    } else{
+        updateTypeCache(data)
+    }
+}
+
 function zterminalInit(canvasElementId) {
-    var previousOnLoad = window.onload
+	var onLoadTerminalSetup = function () {
+		setupTerminal(canvasElementId)
+	}
+	canvasElementIdGlobal = canvasElementId
+	window.addEventListener('load', onLoadTerminalSetup)
+}
 
-    window.onload = function() {
-      previousOnLoad()
-
+function setupTerminal(canvasElementId){
       var canvas = document.getElementById(canvasElementId);
       var ctx = canvas.getContext("2d");
-      
+
       ctx.font = "5px Arial";
       ctx.fillText("user@zsite:", canvas.height, 64);
 
@@ -27,15 +55,14 @@ function zterminalInit(canvasElementId) {
         if(/^[a-zA-Z0-9= /.]$/.test(event.key)){
           updateTypeCache(event.key)
         } else if(event.key == "Enter"){
-          handleEnterKey()
+          handleEnterKey(canvasElementId)
         } else if(event.key == "Backspace"){
           handleBackSpace()
         }
       });
 
       // Run console listener
-      consoleListener();
-    };
+      consoleListener(canvasElementId);
 }
 
 function sleep(ms) {
@@ -47,8 +74,8 @@ function addMessage(message) {
   typingCache = ""
 }
 
-function clearConsole(){
-  var canvas = document.getElementById("myCanvas");
+function clearConsole(canvasElementId){
+  var canvas = document.getElementById(canvasElementId);
   var ctx = canvas.getContext("2d");
   ctx.clearRect(0, 0, canvas.width, canvas.height);
   typingCache = ""
@@ -97,13 +124,13 @@ function listFiles(){
   addMessage(`-- ${Object.keys(FILES).join(' ')}`)
 }
 
-function handleEnterKey(){
+function handleEnterKey(canvasElementId){
   var messageToSend = `user@zsite: ${typingCache}`
-  
+
   switch (true) {
     case /clear/.test(typingCache):
       console.log("Clear console");
-      clearConsole()
+      clearConsole(canvasElementId)
       break;
     case /help/.test(typingCache):
       console.log("help command");
@@ -138,24 +165,24 @@ function handleBackSpace(){
 }
 
 function updateTypeCache(char){
-  typingCache += char  
+  typingCache += char
 }
 
-async function consoleListener(){
-  var hasTab = false 
-  var rectChar = "▮"
+async function consoleListener(canvasElementId){
+  var hasTab = false
+  var rectChar = "|"
   while (true) {
 
     await sleep(500);
     console.log("wait..")
-    var canvas = document.getElementById("myCanvas");
-    
+    var canvas = document.getElementById(canvasElementId);
+
     var ctx = canvas.getContext("2d");
     var ratio = window.devicePixelRatio || 1;
 
     // Set canvas dimensions
-    canvas.width = 800 * ratio;
-    canvas.height = 400 * ratio;
+    canvas.width = consoleWidth * ratio;
+    canvas.height = consoleHeight * ratio;
 
     // Scale the context
     ctx.scale(ratio, ratio);
@@ -165,15 +192,15 @@ async function consoleListener(){
       hasTab = true
       termMessage += rectChar
     } else {
-      hasTab = false 
+      hasTab = false
     }
     termMessage += typingCache
     ctx.fillStyle = "#e339c7";
 
-    //ctx.clearRect(0, 64 - 16, canvas.width, 390);   
+    //ctx.clearRect(0, 64 - 16, canvas.width, 390);
     //console.log("clear rect")
     ctx.font = "16px Arial";
-    
+
     ctx.fillText(termMessage, 0, 0 + (16 * (messageStack.length + 1)));
     var iterations = 1
 

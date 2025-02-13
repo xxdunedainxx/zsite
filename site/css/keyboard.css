@@ -1,0 +1,15 @@
+#keyboard-container {
+    display: grid;
+    grid-template-columns: repeat(10, 1fr); /* Adjust as needed */
+    grid-gap: 5px;
+    text-align: center;
+    padding: 10px;
+}
+
+.key {
+    background-color: #eee;
+    border: 1px solid #ccc;
+    padding: 10px;
+    text-align: center;
+    cursor: pointer;
+}
