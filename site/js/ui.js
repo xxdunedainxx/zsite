@@ -1,7 +1,5 @@
 /**
-  * All JS related to UI Rendering 
-  *
-  *
+  * All JS related to UI Rendering
 **/
 
 

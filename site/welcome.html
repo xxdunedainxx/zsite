@@ -4,212 +4,62 @@
 <head>
   <link rel="stylesheet" href="css/nav.css">
   <link rel="stylesheet" href="css/console.css">
+  <link rel="stylesheet" href="css/keyboard.css">
+
   <style>
     canvas {
-    image-rendering: optimizeLegibility;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-}
-body {
-    background-color: #D3D3D3; /* Off-white */
-    color: #4B0082; /* Dark purple */
-    font-family: Arial, sans-serif; /* Font choice */
-}
+      image-rendering: optimizeLegibility;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+    body {
+        background-color: #D3D3D3; /* Off-white */
+        color: #4B0082; /* Dark purple */
+        font-family: Arial, sans-serif; /* Font choice */
+    }
+
+    #mainContainer{
+        height: 75%;
+        display: flex;
+        flex-direction: column; /* Stack the child elements vertically */
+        height: 500px; /* Set a fixed height for the container */
+        background-color: #f4f4f4;
+        justify-content: space-between; /* Push the last element to the bottom */
+    }
+
   </style>
   <title>Hey, Im Zach :)</title>
-  <script type="text/javascript" src="js/ui.js">
-  </script>
+  <script type="text/javascript" src="js/ui.js"></script>
+  <script type="text/javascript" src="js/util.js"></script>
+  <script type="text/javascript" src="js/keyboard.js"></script>
+  <script type="text/javascript" src="js/terminal.js"></script>
+
 
   <script>
-    var typingCache = ""
-    var previousCommands = 1
-    var messageStack = []
-
-    var FILES = {
-      "README" : `
-        Hey! Welcome to my personal website. You can use this terminal in order to navigate the website... Or well, at least figure out WHERE you can navigate. 
-      `,
-      "secret1" : 'L3phY2g=',
-      "secret2" : ""
-    }
-
-    function sleep(ms) {
-        return new Promise(resolve => setTimeout(resolve, ms));
-    }
-
-    function addMessage(message) {
-      messageStack.push(message)
-      typingCache = ""
-    }
-
-    function clearConsole(){
-      var canvas = document.getElementById("myCanvas");
-      var ctx = canvas.getContext("2d");
-      ctx.clearRect(0, 0, canvas.width, canvas.height);
-      typingCache = ""
-      messageStack = []
-    }
-
-    function helpToConsole(){
-      addMessage(` -- 'clear':: clear the console`)
-      addMessage(` -- 'help':: get info on methods`)
-      addMessage(` -- 'ls':: list files`)
-      addMessage(` -- 'cat $fileName':: output file content`)
-      addMessage(` -- 'b64decode $str':: base64 decode a string`)
-      addMessage(` -- 'nav $str':: navigate to another url on this site`)
-      addMessage(`===== COMMANDS ======`)
-
-    }
-
-    function base64Decode(b64DecodeCmd){
-      addMessage(`user@zsite: ${b64DecodeCmd} \\\\ i guess you could just use a b64 decoder for this :) lol`)
-      addMessage(`-- ${atob(b64DecodeCmd.split(' ')[1])}.html`)
-    }
-
-    function navToAnotherSite(navCmd) {
-      var destination = navCmd.split(' ')[1]
-      var fullDest = window.location.href.replace(/\/[^\/]*$/, destination)
-      alert(`Navigating to: '${fullDest}'`)
-
-      window.location.href = fullDest
-    }
-
-    function catFile(catCmd){
-      var fileToCat = catCmd.split(" ")[1]
-      var message = `user@zsite: ${catCmd}`
-      if(Object.keys(FILES).includes(fileToCat)){
-        addMessage(message)
-        addMessage(FILES[fileToCat])
+    var mobileHandler = function(){
+      if(isMobile()){
+        console.log("is mobile")
+        var terminal = document.getElementById("terminalCanvas")
+        terminal.style.width  = window.innerWidth * .75
       } else {
-        message += " -- invalid file name provided"
-        addMessage(message)
-      }
-
-    }
-
-    function listFiles(){
-      addMessage(`user@zsite: ls`)
-      addMessage(`-- ${Object.keys(FILES).join(' ')}`)
-    }
-
-    function handleEnterKey(){
-      var messageToSend = `user@zsite: ${typingCache}`
-      
-      switch (true) {
-        case /clear/.test(typingCache):
-          console.log("Clear console");
-          clearConsole()
-          break;
-        case /help/.test(typingCache):
-          console.log("help command");
-          helpToConsole()
-          break;
-        case /ls/.test(typingCache):
-          console.log("list command");
-          listFiles()
-          break;
-        case /cat [a-zA-Z0-9 ]+$/.test(typingCache):
-          console.log("cat command");
-          catFile(typingCache)
-          break;
-        case /b64decode [a-zA-Z0-9= ]+$/.test(typingCache):
-          console.log("b64decode command");
-          base64Decode(typingCache)
-          break;
-        case /nav [/a-zA-Z0-9.]+$/.test(typingCache):
-          console.log("nav command")
-          navToAnotherSite(typingCache)
-          break;
-        default:
-          console.log("Invalid command supplied");
-          messageToSend += ' -- Invalid command supplied. type \'help\' for list of cmds'
-          addMessage(messageToSend)
-      }
-
-    }
-
-    function handleBackSpace(){
-      typingCache = typingCache.substr(0, typingCache.length - 1)
-    }
-
-    function updateTypeCache(char){
-      typingCache += char  
-    }
-
-    async function consoleUpdater(){
-      var hasTab = false 
-      var rectChar = "▮"
-      while (true) {
-
-        await sleep(500);
-        console.log("wait..")
-        var canvas = document.getElementById("myCanvas");
-        
-        var ctx = canvas.getContext("2d");
-        var ratio = window.devicePixelRatio || 1;
-
-        // Set canvas dimensions
-        canvas.width = 800 * ratio;
-        canvas.height = 400 * ratio;
-
-        // Scale the context
-        ctx.scale(ratio, ratio);
-
-        var termMessage = "user@zsite:"
-        if(!hasTab && typingCache == ""){
-          hasTab = true
-          termMessage += rectChar
-        } else {
-          hasTab = false 
-        }
-        termMessage += typingCache
-        ctx.fillStyle = "#e339c7";
-
-        //ctx.clearRect(0, 64 - 16, canvas.width, 390);   
-        //console.log("clear rect")
-        ctx.font = "16px Arial";
-        
-        ctx.fillText(termMessage, 0, 0 + (16 * (messageStack.length + 1)));
-        var iterations = 1
-
-        for(var i = 0; i < messageStack.length; i++){
-          ctx.fillText(messageStack[i], 0, (16 * iterations));
-          iterations+=1
-        }
+        makeElementInvisible("mobileHeaderNotify")
       }
     }
+
+    if(isMobile()){
+      registerKeyboard(
+        "keyboard-container",
+        null,
+        null
+      )
+    }
+
+    window.addEventListener('load', mobileHandler)
+
+    zterminalInit("terminalCanvas")
+
   </script>
 
-  <script>
-    window.onload = function() {
-      //navBar();
-
-    var canvas = document.getElementById("myCanvas");
-    var ctx = canvas.getContext("2d");
-    
-    ctx.font = "5px Arial";
-    ctx.fillText("user@zsite:", canvas.height, 64);
-
-    window.addEventListener('keydown', function(event) {
-        console.log("typing..")
-      console.log(event.key); // Logs the pressed key
-      if(/^[a-zA-Z0-9= /.]$/.test(event.key)){
-        updateTypeCache(event.key)
-      } else if(event.key == "Enter"){
-        handleEnterKey()
-      } else if(event.key == "Backspace"){
-        handleBackSpace()
-      }
-    });
-
-    consoleUpdater();
-
-  };
-  </script>
- <script>
-
-  </script>
-</head>
 </head>
 <body>
 
@@ -217,25 +67,22 @@ body {
 <div id="nav"></div>
 <!-- END NAV  width="200" height="200"-->
 
-<h1>Zach's super sick personal website</h1>
-<h1>DISCLAIMER --- THIS SHIT PROBABLY SUCKS ON MOBILE. IM SORRY. I WILL TRY TO FIX IN THE FUTURE.</h1>
-<p>Hey there :)! Welcome to my site. In order to discover more meaningful areas of the site, please use the terminal below to navigate and discover the rest of the website.
-  <br />
-  <br />
-  Good Luck!
-  <br />
-  &nbsp;&nbsp;&nbsp;&nbsp;~ Zach :D 
-</p>
+<div id="mainContainer">
+  <h1>Zach's super sick personal website</h1>
+  <h1 id="mobileHeaderNotify">Hopefully the experience on mobile isn't too bad :(</h1>
+  <p>Hey there :)! Welcome to my site. In order to discover more meaningful areas of the site, please use the terminal below to navigate and discover the rest of the website.
+    <br />
+    <br />
+    Good Luck!
+    <br />
+    &nbsp;&nbsp;&nbsp;&nbsp;~ Zach :D
+  </p>
+    <div id="keyboard-container"></div>
+  <!-- <div id="console"> -->
+    <canvas id="terminalCanvas" style="background-color: #383838; border: 5px solid black;">
+  <!-- </div> -->
 
-<!-- <div id="console"> -->
-  <canvas id="myCanvas"   width="300"
-  height="64"
-   style="background-color: #383838; border: 5px solid black; height: 400px; width: 800px;"
-   >
-
-
-<!-- </div> -->
-
+</div>
 </body>
 </html>
 
